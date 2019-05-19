@@ -83,6 +83,10 @@ function getBookByID(id: number): any {
     return getAllBooks().find(book => book.id === id);
 }
 
+function createCustomerID(name: string, id: number): any {
+    return `${name}${id}`;
+}
+
 // ====================showing results in console==================================
 // task 1
 logFirstAvailable(getAllBooks());
