@@ -13,6 +13,16 @@ enum Category {
     Angular
 }
 
+const myID: string = createCustomerID('Ann', 10);
+let idGenerator: (name: string, id: number) => string = (
+    name: string,
+    id: number
+) => {
+    return `${name}${id}`;
+};
+
+idGenerator = createCustomerID;
+
 function getAllBooks(): any[] {
     let books: any[] = [
         {
@@ -83,9 +93,16 @@ function getBookByID(id: number): any {
     return getAllBooks().find(book => book.id === id);
 }
 
+function createCustomerID(name: string, id: number): any {
+    return `${name}${id}`;
+}
+
 // ====================showing results in console==================================
 // task 1
 logFirstAvailable(getAllBooks());
 // task 2-3
 console.log('\nTitles of books from JavaScript category:');
 logBookTitles(getBookTitlesByCategory(Category.JavaScript));
+// task 4
+console.log(`\n${myID}`);
+console.log(idGenerator('idGenerator', 123));
