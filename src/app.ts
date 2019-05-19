@@ -79,6 +79,10 @@ function logBookTitles(titles: string[]): void {
     titles.forEach(title => console.log(title));
 }
 
+function getBookByID(id: number): any {
+    return getAllBooks().find(book => book.id === id);
+}
+
 // ====================showing results in console==================================
 // task 1
 logFirstAvailable(getAllBooks());
