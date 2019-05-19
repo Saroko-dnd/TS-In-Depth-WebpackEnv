@@ -95,7 +95,7 @@ function getBookByID(id: number): any {
     return getAllBooks().find(book => book.id === id);
 }
 
-function createCustomerID(name: string, id: number): any {
+function createCustomerID(name: string, id: number): string {
     return `${name}${id}`;
 }
 
@@ -108,6 +108,22 @@ function createCustomer(name: string, age?: number, city?: string): void {
     if (city) {
         console.log(`city: ${city}`);
     }
+}
+
+function сheckoutBooks(customer: string, bookIDs: number[]): string[] {
+    const availableTitles: string[] = [];
+
+    console.log(`Request was made by: ${customer}`);
+
+    bookIDs.forEach(id => {
+        const book: any = getBookByID(id);
+
+        if (book.available) {
+            availableTitles.push(book.title);
+        }
+    });
+
+    return availableTitles;
 }
 
 // ====================showing results in console==================================
