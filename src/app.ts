@@ -59,5 +59,17 @@ function logFirstAvailable(books: any[]): void {
     console.log(`First available title: ${firstAvailableTitle}`);
 }
 
+function getBookTitlesByCategory(category: Category): Array<string> {
+    const titles: Array<string> = [];
+
+    for (const book of getAllBooks()) {
+        if (book.category === category) {
+            titles.push(book.title);
+        }
+    }
+
+    return titles;
+}
+
 // ====================showing results in console==================================
 console.log(logFirstAvailable(getAllBooks()));
