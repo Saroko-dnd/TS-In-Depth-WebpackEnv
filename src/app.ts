@@ -5,22 +5,38 @@ function showHello(divName: string, name: string) {
     elt.innerText = `Hello from ${name}`;
 }
 
+enum Category {
+    JavaScript,
+    CSS,
+    HTML,
+    TypeScript,
+    Angular
+}
+
 function getAllBooks(): any[] {
     let books: any[] = [
         {
             title: 'Refactoring JavaScript',
             author: 'Evan Burchard',
+            category: Category.JavaScript,
             available: true
         },
         {
             title: 'JavaScript Testing',
             author: 'Liang Yuxian Eugene',
+            category: Category.JavaScript,
             available: false
         },
-        { title: 'CSS Secrets', author: 'Lea Verou', available: true },
+        {
+            title: 'CSS Secrets',
+            author: 'Lea Verou',
+            category: Category.CSS,
+            available: true
+        },
         {
             title: 'Mastering JavaScript Object-Oriented Programming',
             author: 'Andrea Chiarelli',
+            category: Category.JavaScript,
             available: true
         }
     ];
@@ -43,5 +59,27 @@ function logFirstAvailable(books: any[]): void {
     console.log(`First available title: ${firstAvailableTitle}`);
 }
 
+function getBookTitlesByCategory(category: Category): Array<string> {
+    const titles: Array<string> = [];
+
+    for (const book of getAllBooks()) {
+        if (book.category === category) {
+            titles.push(book.title);
+        }
+    }
+
+    return titles;
+}
+
+function logBookTitles(titles: string[]): void {
+    for (const title of titles) {
+        console.log(title);
+    }
+}
+
 // ====================showing results in console==================================
-console.log(logFirstAvailable(getAllBooks()));
+// task 1
+logFirstAvailable(getAllBooks());
+// task 2
+console.log('\nTitles of books from JavaScript category:');
+logBookTitles(getBookTitlesByCategory(Category.JavaScript));
