@@ -5,6 +5,14 @@ function showHello(divName: string, name: string) {
     elt.innerText = `Hello from ${name}`;
 }
 
+enum Category {
+    JavaScript,
+    CSS,
+    HTML,
+    TypeScript,
+    Angular
+}
+
 function getAllBooks(): any[] {
     let books: any[] = [
         {
