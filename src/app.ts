@@ -73,7 +73,9 @@ function logFirstAvailable(books: any[]): void {
     console.log(`First available title: ${firstAvailableTitle}`);
 }
 
-function getBookTitlesByCategory(category: Category): Array<string> {
+function getBookTitlesByCategory(
+    category = Category.JavaScript
+): Array<string> {
     const titles: Array<string> = [];
 
     for (const book of getAllBooks()) {
@@ -122,3 +124,7 @@ console.log('\ncreateCustomer function testing:\n');
 createCustomer('Jacob');
 createCustomer('Mason', 30);
 createCustomer('William', 28, 'New York');
+console.log(
+    '\nCalling function getBookTitlesByCategory without parameter (default category: JavaScript):\n'
+);
+logBookTitles(getBookTitlesByCategory());
