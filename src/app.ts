@@ -14,6 +14,7 @@ enum Category {
 }
 
 const myID: string = createCustomerID('Ann', 10);
+const myBooks: string[] = сheckoutBooks('Ann', 1, 2, 4);
 let idGenerator: (name: string, id: number) => string = (
     name: string,
     id: number
@@ -58,7 +59,7 @@ function getAllBooks(): any[] {
     return books;
 }
 
-function logFirstAvailable(books: any[]): void {
+function logFirstAvailable(books = getAllBooks()): void {
     const numberOfBooks: number = books.length;
     let firstAvailableTitle: string;
 
@@ -73,7 +74,9 @@ function logFirstAvailable(books: any[]): void {
     console.log(`First available title: ${firstAvailableTitle}`);
 }
 
-function getBookTitlesByCategory(category: Category): Array<string> {
+function getBookTitlesByCategory(
+    category = Category.JavaScript
+): Array<string> {
     const titles: Array<string> = [];
 
     for (const book of getAllBooks()) {
@@ -93,8 +96,35 @@ function getBookByID(id: number): any {
     return getAllBooks().find(book => book.id === id);
 }
 
-function createCustomerID(name: string, id: number): any {
+function createCustomerID(name: string, id: number): string {
     return `${name}${id}`;
+}
+
+function createCustomer(name: string, age?: number, city?: string): void {
+    console.log(`Customer name: ${name}`);
+
+    if (age) {
+        console.log(`age: ${age}`);
+    }
+    if (city) {
+        console.log(`city: ${city}`);
+    }
+}
+
+function сheckoutBooks(customer: string, ...bookIDs: number[]): string[] {
+    const availableTitles: string[] = [];
+
+    console.log(`Request was made by: ${customer}`);
+
+    bookIDs.forEach(id => {
+        const book: any = getBookByID(id);
+
+        if (book.available) {
+            availableTitles.push(book.title);
+        }
+    });
+
+    return availableTitles;
 }
 
 // ====================showing results in console==================================
@@ -106,3 +136,18 @@ logBookTitles(getBookTitlesByCategory(Category.JavaScript));
 // task 4
 console.log(`\n${myID}`);
 console.log(idGenerator('idGenerator', 123));
+// task 5
+console.log('\ncreateCustomer function testing:\n');
+createCustomer('Jacob');
+createCustomer('Mason', 30);
+createCustomer('William', 28, 'New York');
+console.log(
+    '\nCalling function getBookTitlesByCategory without parameter (default category: JavaScript):\n'
+);
+logBookTitles(getBookTitlesByCategory());
+console.log(
+    '\nCalling logFirstAvailable without parameter (default value: result of getAllBooks function call):\n'
+);
+logFirstAvailable();
+console.log('\nResult of сheckoutBooks(Ann, 1, 2, 4)\n');
+myBooks.forEach(title => console.log(title));
