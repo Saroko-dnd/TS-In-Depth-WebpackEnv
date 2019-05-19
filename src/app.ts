@@ -16,24 +16,28 @@ enum Category {
 function getAllBooks(): any[] {
     let books: any[] = [
         {
+            id: 1,
             title: 'Refactoring JavaScript',
             author: 'Evan Burchard',
             category: Category.JavaScript,
             available: true
         },
         {
+            id: 2,
             title: 'JavaScript Testing',
             author: 'Liang Yuxian Eugene',
             category: Category.JavaScript,
             available: false
         },
         {
+            id: 3,
             title: 'CSS Secrets',
             author: 'Lea Verou',
             category: Category.CSS,
             available: true
         },
         {
+            id: 4,
             title: 'Mastering JavaScript Object-Oriented Programming',
             author: 'Andrea Chiarelli',
             category: Category.JavaScript,
