@@ -14,6 +14,12 @@ enum Category {
 }
 
 const myID: string = createCustomerID('Ann', 10);
+let idGenerator: (name: string, id: number) => string = (
+    name: string,
+    id: number
+) => {
+    return `${name}${id}`;
+};
 
 function getAllBooks(): any[] {
     let books: any[] = [
