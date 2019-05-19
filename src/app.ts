@@ -21,6 +21,8 @@ let idGenerator: (name: string, id: number) => string = (
     return `${name}${id}`;
 };
 
+idGenerator = createCustomerID;
+
 function getAllBooks(): any[] {
     let books: any[] = [
         {
@@ -103,3 +105,4 @@ console.log('\nTitles of books from JavaScript category:');
 logBookTitles(getBookTitlesByCategory(Category.JavaScript));
 // task 4
 console.log(`\n${myID}`);
+console.log(idGenerator('idGenerator', 123));
