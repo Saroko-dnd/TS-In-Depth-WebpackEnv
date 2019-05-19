@@ -71,5 +71,15 @@ function getBookTitlesByCategory(category: Category): Array<string> {
     return titles;
 }
 
+function logBookTitles(titles: string[]): void {
+    for (const title of titles) {
+        console.log(title);
+    }
+}
+
 // ====================showing results in console==================================
-console.log(logFirstAvailable(getAllBooks()));
+// task 1
+logFirstAvailable(getAllBooks());
+// task 2
+console.log('\nTitles of books from JavaScript category:');
+logBookTitles(getBookTitlesByCategory(Category.JavaScript));
