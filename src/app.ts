@@ -127,6 +127,20 @@ function сheckoutBooks(customer: string, ...bookIDs: number[]): string[] {
     return availableTitles;
 }
 
+function getTitles(author: string): string[];
+function getTitles(available: boolean): string[];
+function getTitles(bookProperty: string | boolean): string[] {
+    const propType: string = typeof bookProperty;
+
+    return getAllBooks()
+        .filter(book =>
+            propType === 'string'
+                ? book.author === bookProperty
+                : book.available === bookProperty
+        )
+        .map(book => book.title);
+}
+
 // ====================showing results in console==================================
 // task 1
 logFirstAvailable(getAllBooks());
