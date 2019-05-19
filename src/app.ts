@@ -27,3 +27,21 @@ function getAllBooks(): any[] {
 
     return books;
 }
+
+function logFirstAvailable(books: any[]): void {
+    const numberOfBooks: number = books.length;
+    let firstAvailableTitle: string;
+
+    for (const book of books) {
+        if (book.available) {
+            firstAvailableTitle = book.title;
+            break;
+        }
+    }
+
+    console.log(`Number of books: ${numberOfBooks}`);
+    console.log(`First available title: ${firstAvailableTitle}`);
+}
+
+// ====================showing results in console==================================
+console.log(logFirstAvailable(getAllBooks()));
