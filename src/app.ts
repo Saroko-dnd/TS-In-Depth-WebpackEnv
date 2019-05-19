@@ -97,6 +97,17 @@ function createCustomerID(name: string, id: number): any {
     return `${name}${id}`;
 }
 
+function createCustomer(name: string, age?: number, city?: string): void {
+    console.log(`Customer name: ${name}`);
+
+    if (age) {
+        console.log(`age: ${age}`);
+    }
+    if (city) {
+        console.log(`city: ${city}`);
+    }
+}
+
 // ====================showing results in console==================================
 // task 1
 logFirstAvailable(getAllBooks());
@@ -106,3 +117,8 @@ logBookTitles(getBookTitlesByCategory(Category.JavaScript));
 // task 4
 console.log(`\n${myID}`);
 console.log(idGenerator('idGenerator', 123));
+// task 5
+console.log('\ncreateCustomer function testing:\n');
+createCustomer('Jacob');
+createCustomer('Mason', 30);
+createCustomer('William', 28, 'New York');
