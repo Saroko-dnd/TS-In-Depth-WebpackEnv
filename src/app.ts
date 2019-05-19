@@ -13,6 +13,8 @@ enum Category {
     Angular
 }
 
+const myID: string = createCustomerID('Ann', 10);
+
 function getAllBooks(): any[] {
     let books: any[] = [
         {
@@ -93,3 +95,5 @@ logFirstAvailable(getAllBooks());
 // task 2-3
 console.log('\nTitles of books from JavaScript category:');
 logBookTitles(getBookTitlesByCategory(Category.JavaScript));
+// task 4
+console.log(`\n${myID}`);
