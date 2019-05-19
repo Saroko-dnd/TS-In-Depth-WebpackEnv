@@ -58,7 +58,7 @@ function getAllBooks(): any[] {
     return books;
 }
 
-function logFirstAvailable(books: any[]): void {
+function logFirstAvailable(books = getAllBooks()): void {
     const numberOfBooks: number = books.length;
     let firstAvailableTitle: string;
 
@@ -128,3 +128,7 @@ console.log(
     '\nCalling function getBookTitlesByCategory without parameter (default category: JavaScript):\n'
 );
 logBookTitles(getBookTitlesByCategory());
+console.log(
+    '\nCalling logFirstAvailable without parameter (default value: result of getAllBooks function call):\n'
+);
+logFirstAvailable();
