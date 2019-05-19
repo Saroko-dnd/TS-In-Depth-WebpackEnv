@@ -14,6 +14,7 @@ enum Category {
 }
 
 const myID: string = createCustomerID('Ann', 10);
+const myBooks: string[] = сheckoutBooks('Ann', 1, 2, 4);
 let idGenerator: (name: string, id: number) => string = (
     name: string,
     id: number
@@ -110,7 +111,7 @@ function createCustomer(name: string, age?: number, city?: string): void {
     }
 }
 
-function сheckoutBooks(customer: string, bookIDs: number[]): string[] {
+function сheckoutBooks(customer: string, ...bookIDs: number[]): string[] {
     const availableTitles: string[] = [];
 
     console.log(`Request was made by: ${customer}`);
@@ -148,3 +149,5 @@ console.log(
     '\nCalling logFirstAvailable without parameter (default value: result of getAllBooks function call):\n'
 );
 logFirstAvailable();
+console.log('\nResult of сheckoutBooks(Ann, 1, 2, 4)\n');
+myBooks.forEach(title => console.log(title));
