@@ -54,7 +54,7 @@ class UniversityLibrarian implements Librarian {
 }
 
 class ReferenceItem {
-    constructor(public title: string, private year: number) {
+    constructor(public title: string, protected year: number) {
         console.log('Creating a new ReferenceItem...');
     }
 
@@ -89,6 +89,21 @@ class ReferenceItem {
     }
 }
 
+class Encyclopedia extends ReferenceItem {
+    constructor(newTitle: string, newYear: number, public edition: number) {
+        super(newTitle, newYear);
+    }
+
+    printItem() {
+        console.log(
+            `${this.title} from ${
+                ReferenceItem.department
+            } department was published in ${this.year}`
+        );
+        console.log(`Edition: ${this.edition} (${this.year})`);
+    }
+}
+
 const myID: string = createCustomerID('Ann', 10);
 const checkedOutBooks: string[] = getTitles(false);
 const myBook: Book = {
@@ -117,6 +132,7 @@ const ref: ReferenceItem = new ReferenceItem(
     'Programming Foundations with JavaScript, HTML, and CSS',
     2010
 );
+const refBook = new Encyclopedia('Programming languages', 2015, 3);
 const myBooks: string[] = сheckoutBooks('Ann', 1, 2, 4);
 
 let idGenerator: (name: string, id: number) => string = (
@@ -311,3 +327,7 @@ favoriteLibrarian.assistCustomer('Michael');
 console.log('\n Tests for class ReferenceItem:');
 ref.printItem();
 console.log(ref.publisher);
+
+// task 12
+console.log('\n Test of method printItem from class Encyclopedia');
+refBook.printItem();
