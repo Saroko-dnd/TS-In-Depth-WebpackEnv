@@ -53,8 +53,43 @@ class UniversityLibrarian implements Librarian {
     }
 }
 
+class ReferenceItem {
+    constructor(public title: string, private year: number) {
+        console.log('Creating a new ReferenceItem...');
+    }
+
+    /*constructor(newTitle: string, newYear: number) {
+        console.log('Creating a new ReferenceItem...');
+
+        this.title = newTitle;
+        this.year = newYear;
+    }
+
+    title: string;
+    year: number;*/
+
+    static department = 'Programming';
+
+    private _publisher: string;
+
+    get publisher() {
+        return this._publisher.toUpperCase();
+    }
+
+    set publisher(newPublisher: string) {
+        this._publisher = newPublisher;
+    }
+
+    printItem() {
+        console.log(
+            `${this.title} from ${
+                ReferenceItem.department
+            } department was published in ${this.year}`
+        );
+    }
+}
+
 const myID: string = createCustomerID('Ann', 10);
-const myBooks: string[] = сheckoutBooks('Ann', 1, 2, 4);
 const checkedOutBooks: string[] = getTitles(false);
 const myBook: Book = {
     id: 5,
@@ -78,6 +113,11 @@ const favoriteAuthor: Author = {
     assistCustomer: (custName: string) => {}
 };*/
 const favoriteLibrarian: Librarian = new UniversityLibrarian();
+const ref: ReferenceItem = new ReferenceItem(
+    'Programming Foundations with JavaScript, HTML, and CSS',
+    2010
+);
+const myBooks: string[] = сheckoutBooks('Ann', 1, 2, 4);
 
 let idGenerator: (name: string, id: number) => string = (
     name: string,
@@ -88,6 +128,7 @@ let idGenerator: (name: string, id: number) => string = (
 
 idGenerator = createCustomerID;
 favoriteLibrarian.name = 'Joshua';
+ref.publisher = 'Arcadia Publishing';
 
 function getAllBooks(): Book[] {
     let books: Book[] = [
@@ -265,3 +306,8 @@ logDamage(`several pages was ripped out`);
 // task 10
 console.log('\n Result of favoriteLibrarian.assistCustomer(Michael):');
 favoriteLibrarian.assistCustomer('Michael');
+
+// task 11
+console.log('\n Tests for class ReferenceItem:');
+ref.printItem();
+console.log(ref.publisher);
