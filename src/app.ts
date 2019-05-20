@@ -13,6 +13,10 @@ enum Category {
     Angular
 }
 
+interface DamageLogger {
+    (reason: string): void;
+}
+
 interface Book {
     id: number;
     title: string;
@@ -22,7 +26,7 @@ interface Book {
 
     pages?: number;
 
-    markDamaged?: (reason: string) => void;
+    markDamaged?: DamageLogger;
 }
 
 const myID: string = createCustomerID('Ann', 10);
@@ -37,6 +41,7 @@ const myBook: Book = {
     pages: 200,
     markDamaged: printBookDamegeDescription
 };
+const logDamage: DamageLogger = simpleDamageLogger;
 
 let idGenerator: (name: string, id: number) => string = (
     name: string,
@@ -172,6 +177,10 @@ function printBookDamegeDescription(reason: string): void {
     console.log(`Damaged: ${reason}`);
 }
 
+function simpleDamageLogger(damage: string): void {
+    console.log(`Damage description: ${damage}`);
+}
+
 // ====================showing results in console==================================
 // task 1
 logFirstAvailable(getAllBooks());
@@ -209,3 +218,9 @@ console.log('\n printBook function test');
 printBook(myBook);
 console.log('\n myBook.markDamaged method test\n');
 myBook.markDamaged('missing back cover');
+
+// task 8
+console.log(
+    `\n Testing simpleDamageLogger function which was assigned to variable logDamage of type DamageLogger`
+);
+logDamage(`several pages was ripped out`);
