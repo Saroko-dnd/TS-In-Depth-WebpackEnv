@@ -53,6 +53,22 @@ class UniversityLibrarian implements Librarian {
     }
 }
 
+class ReferenceItem {
+    constructor(newTitle: string, newYear: number) {
+        console.log('Creating a new ReferenceItem...');
+
+        this.title = newTitle;
+        this.year = newYear;
+    }
+
+    title: string;
+    year: number;
+
+    printItem() {
+        console.log(`${this.title} was published in ${this.year}`);
+    }
+}
+
 const myID: string = createCustomerID('Ann', 10);
 const myBooks: string[] = сheckoutBooks('Ann', 1, 2, 4);
 const checkedOutBooks: string[] = getTitles(false);
@@ -78,6 +94,10 @@ const favoriteAuthor: Author = {
     assistCustomer: (custName: string) => {}
 };*/
 const favoriteLibrarian: Librarian = new UniversityLibrarian();
+const ref: ReferenceItem = new ReferenceItem(
+    'Programming Foundations with JavaScript, HTML, and CSS',
+    2010
+);
 
 let idGenerator: (name: string, id: number) => string = (
     name: string,
@@ -265,3 +285,7 @@ logDamage(`several pages was ripped out`);
 // task 10
 console.log('\n Result of favoriteLibrarian.assistCustomer(Michael):');
 favoriteLibrarian.assistCustomer('Michael');
+
+// task 11
+console.log('\n Tested printItem method of class ReferenceItem');
+ref.printItem();
