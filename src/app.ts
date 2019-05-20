@@ -56,6 +56,17 @@ const myBook: Book = {
     markDamaged: printBookDamegeDescription
 };
 const logDamage: DamageLogger = simpleDamageLogger;
+const favoriteAuthor: Author = {
+    name: 'Ethan',
+    email: 'ethan@gmail.com',
+    numBooksPublished: 12
+};
+const favoriteLibrarian: Librarian = {
+    name: 'Matthew',
+    email: 'matthew@gmail.com',
+    department: 'fiction',
+    assistCustomer: (custName: string) => {}
+};
 
 let idGenerator: (name: string, id: number) => string = (
     name: string,
