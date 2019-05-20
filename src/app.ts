@@ -43,6 +43,16 @@ interface Book {
     markDamaged?: DamageLogger;
 }
 
+class UniversityLibrarian implements Librarian {
+    name: string;
+    email: string;
+    department: string;
+
+    assistCustomer(custName: string): void {
+        console.log(`${this.name} is assisting ${custName}`);
+    }
+}
+
 const myID: string = createCustomerID('Ann', 10);
 const myBooks: string[] = сheckoutBooks('Ann', 1, 2, 4);
 const checkedOutBooks: string[] = getTitles(false);
@@ -61,12 +71,12 @@ const favoriteAuthor: Author = {
     email: 'ethan@gmail.com',
     numBooksPublished: 12
 };
-const favoriteLibrarian: Librarian = {
+/*const favoriteLibrarian: Librarian = {
     name: 'Matthew',
     email: 'matthew@gmail.com',
     department: 'fiction',
     assistCustomer: (custName: string) => {}
-};
+};*/
 
 let idGenerator: (name: string, id: number) => string = (
     name: string,
