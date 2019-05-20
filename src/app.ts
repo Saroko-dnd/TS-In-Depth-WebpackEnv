@@ -15,6 +15,7 @@ enum Category {
 
 const myID: string = createCustomerID('Ann', 10);
 const myBooks: string[] = сheckoutBooks('Ann', 1, 2, 4);
+const checkedOutBooks: string[] = getTitles(false);
 let idGenerator: (name: string, id: number) => string = (
     name: string,
     id: number
@@ -127,15 +128,32 @@ function сheckoutBooks(customer: string, ...bookIDs: number[]): string[] {
     return availableTitles;
 }
 
+function getTitles(author: string): string[];
+function getTitles(available: boolean): string[];
+function getTitles(bookProperty: string | boolean): string[] {
+    const propType: string = typeof bookProperty;
+
+    return getAllBooks()
+        .filter(book =>
+            propType === 'string'
+                ? book.author === bookProperty
+                : book.available === bookProperty
+        )
+        .map(book => book.title);
+}
+
 // ====================showing results in console==================================
 // task 1
 logFirstAvailable(getAllBooks());
+
 // task 2-3
 console.log('\nTitles of books from JavaScript category:');
 logBookTitles(getBookTitlesByCategory(Category.JavaScript));
+
 // task 4
 console.log(`\n${myID}`);
 console.log(idGenerator('idGenerator', 123));
+
 // task 5
 console.log('\ncreateCustomer function testing:\n');
 createCustomer('Jacob');
@@ -151,3 +169,7 @@ console.log(
 logFirstAvailable();
 console.log('\nResult of сheckoutBooks(Ann, 1, 2, 4)\n');
 myBooks.forEach(title => console.log(title));
+
+// task 6
+console.log('\nResult of getTitles(false)\n');
+checkedOutBooks.forEach(title => console.log(title));
