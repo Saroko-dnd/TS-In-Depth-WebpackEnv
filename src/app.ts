@@ -19,11 +19,25 @@ interface Book {
     author: string;
     available: boolean;
     category: Category;
+
+    pages?: number;
+
+    markDamaged?: (reason: string) => void;
 }
 
 const myID: string = createCustomerID('Ann', 10);
 const myBooks: string[] = сheckoutBooks('Ann', 1, 2, 4);
 const checkedOutBooks: string[] = getTitles(false);
+const myBook: Book = {
+    id: 5,
+    title: 'Colors, Backgrounds, and Gradients',
+    author: 'Eric A. Meyer',
+    available: true,
+    category: Category.CSS,
+    pages: 200,
+    markDamaged: printBookDamegeDescription
+};
+
 let idGenerator: (name: string, id: number) => string = (
     name: string,
     id: number
@@ -150,6 +164,14 @@ function getTitles(bookProperty: string | boolean): string[] {
         .map(book => book.title);
 }
 
+function printBook(book: Book): void {
+    console.log(`${book.title} by ${book.author}`);
+}
+
+function printBookDamegeDescription(reason: string): void {
+    console.log(`Damaged: ${reason}`);
+}
+
 // ====================showing results in console==================================
 // task 1
 logFirstAvailable(getAllBooks());
@@ -181,3 +203,9 @@ myBooks.forEach(title => console.log(title));
 // task 6
 console.log('\nResult of getTitles(false)\n');
 checkedOutBooks.forEach(title => console.log(title));
+
+// task 7
+console.log('\n printBook function test');
+printBook(myBook);
+console.log('\n myBook.markDamaged method test\n');
+myBook.markDamaged('missing back cover');
