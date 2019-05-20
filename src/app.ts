@@ -77,6 +77,7 @@ const favoriteAuthor: Author = {
     department: 'fiction',
     assistCustomer: (custName: string) => {}
 };*/
+const favoriteLibrarian: Librarian = new UniversityLibrarian();
 
 let idGenerator: (name: string, id: number) => string = (
     name: string,
@@ -86,6 +87,7 @@ let idGenerator: (name: string, id: number) => string = (
 };
 
 idGenerator = createCustomerID;
+favoriteLibrarian.name = 'Joshua';
 
 function getAllBooks(): Book[] {
     let books: Book[] = [
@@ -259,3 +261,7 @@ console.log(
     `\n Testing simpleDamageLogger function which was assigned to variable logDamage of type DamageLogger`
 );
 logDamage(`several pages was ripped out`);
+
+// task 10
+console.log('\n Result of favoriteLibrarian.assistCustomer(Michael):');
+favoriteLibrarian.assistCustomer('Michael');
