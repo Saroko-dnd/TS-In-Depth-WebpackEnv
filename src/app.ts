@@ -13,6 +13,14 @@ enum Category {
     Angular
 }
 
+interface Book {
+    id: number;
+    title: string;
+    author: string;
+    available: boolean;
+    category: Category;
+}
+
 const myID: string = createCustomerID('Ann', 10);
 const myBooks: string[] = сheckoutBooks('Ann', 1, 2, 4);
 const checkedOutBooks: string[] = getTitles(false);
@@ -25,8 +33,8 @@ let idGenerator: (name: string, id: number) => string = (
 
 idGenerator = createCustomerID;
 
-function getAllBooks(): any[] {
-    let books: any[] = [
+function getAllBooks(): Book[] {
+    let books: Book[] = [
         {
             id: 1,
             title: 'Refactoring JavaScript',
@@ -93,7 +101,7 @@ function logBookTitles(titles: string[]): void {
     titles.forEach(title => console.log(title));
 }
 
-function getBookByID(id: number): any {
+function getBookByID(id: number): Book | undefined {
     return getAllBooks().find(book => book.id === id);
 }
 
@@ -118,9 +126,9 @@ function сheckoutBooks(customer: string, ...bookIDs: number[]): string[] {
     console.log(`Request was made by: ${customer}`);
 
     bookIDs.forEach(id => {
-        const book: any = getBookByID(id);
+        const book: Book | undefined = getBookByID(id);
 
-        if (book.available) {
+        if (book && book.available) {
             availableTitles.push(book.title);
         }
     });
