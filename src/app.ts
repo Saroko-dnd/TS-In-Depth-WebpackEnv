@@ -53,7 +53,7 @@ class UniversityLibrarian implements Librarian {
     }
 }
 
-class ReferenceItem {
+abstract class ReferenceItem {
     constructor(public title: string, protected year: number) {
         console.log('Creating a new ReferenceItem...');
     }
@@ -80,6 +80,8 @@ class ReferenceItem {
         this._publisher = newPublisher;
     }
 
+    abstract printCitation(): void;
+
     printItem() {
         console.log(
             `${this.title} from ${
@@ -92,6 +94,10 @@ class ReferenceItem {
 class Encyclopedia extends ReferenceItem {
     constructor(newTitle: string, newYear: number, public edition: number) {
         super(newTitle, newYear);
+    }
+
+    printCitation(): void {
+        console.log(`${this.title}–${this.year}`);
     }
 
     printItem() {
@@ -128,10 +134,10 @@ const favoriteAuthor: Author = {
     assistCustomer: (custName: string) => {}
 };*/
 const favoriteLibrarian: Librarian = new UniversityLibrarian();
-const ref: ReferenceItem = new ReferenceItem(
+/*const ref: ReferenceItem = new ReferenceItem(
     'Programming Foundations with JavaScript, HTML, and CSS',
     2010
-);
+);*/
 const refBook = new Encyclopedia('Programming languages', 2015, 3);
 const myBooks: string[] = сheckoutBooks('Ann', 1, 2, 4);
 
@@ -144,7 +150,7 @@ let idGenerator: (name: string, id: number) => string = (
 
 idGenerator = createCustomerID;
 favoriteLibrarian.name = 'Joshua';
-ref.publisher = 'Arcadia Publishing';
+// ref.publisher = 'Arcadia Publishing';
 
 function getAllBooks(): Book[] {
     let books: Book[] = [
@@ -324,10 +330,14 @@ console.log('\n Result of favoriteLibrarian.assistCustomer(Michael):');
 favoriteLibrarian.assistCustomer('Michael');
 
 // task 11
-console.log('\n Tests for class ReferenceItem:');
+/*console.log('\n Tests for class ReferenceItem:');
 ref.printItem();
-console.log(ref.publisher);
+console.log(ref.publisher);*/
 
 // task 12
 console.log('\n Test of method printItem from class Encyclopedia');
 refBook.printItem();
+
+// task 13
+console.log('\n Result of refBook.printCitation():');
+refBook.printCitation();
