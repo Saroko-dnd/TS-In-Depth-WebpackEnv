@@ -1,31 +1,13 @@
 import { Category } from './enums';
 import { ReferenceItem, UniversityLibrarian } from './classes';
 import { Book, Author, Logger, Librarian } from './interfaces';
+import RefBook from './encyclopedia';
 
 showHello('greeting', 'TypeScript');
 
 function showHello(divName: string, name: string) {
     const elt = document.getElementById(divName);
     elt.innerText = `Hello from ${name}`;
-}
-
-class Encyclopedia extends ReferenceItem {
-    constructor(newTitle: string, newYear: number, public edition: number) {
-        super(newTitle, newYear);
-    }
-
-    printCitation(): void {
-        console.log(`${this.title}–${this.year}`);
-    }
-
-    printItem() {
-        console.log(
-            `${this.title} from ${
-                ReferenceItem.department
-            } department was published in ${this.year}`
-        );
-        console.log(`Edition: ${this.edition} (${this.year})`);
-    }
 }
 
 const myID: string = createCustomerID('Ann', 10);
@@ -56,7 +38,7 @@ const favoriteLibrarian: Librarian = new UniversityLibrarian();
     'Programming Foundations with JavaScript, HTML, and CSS',
     2010
 );*/
-const refBook = new Encyclopedia('Programming languages', 2015, 3);
+const refBook = new RefBook('Programming languages', 2015, 3);
 const myBooks: string[] = сheckoutBooks('Ann', 1, 2, 4);
 
 let idGenerator: (name: string, id: number) => string = (
