@@ -1,5 +1,7 @@
 import * as Interfaces from '../interfaces';
+import { sealed } from '../decorators';
 
+@sealed('UniversityLibrarian')
 class UniversityLibrarian implements Interfaces.Librarian {
     name: string;
     email: string;
