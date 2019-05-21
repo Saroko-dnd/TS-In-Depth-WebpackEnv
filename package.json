@@ -6,6 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --open",
     "build": "webpack --config webpack.config.js",
+    "build-namespaces": "tsc --outFile ./src/NamespaceDemo/bundle.js ./src/NamespaceDemo/app.ts --target ES5",
     "watch": "webpack --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
