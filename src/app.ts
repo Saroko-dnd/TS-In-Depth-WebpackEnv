@@ -291,6 +291,11 @@ console.log(purge<Book>(inventory));
 console.log(purge<number>([1, 2, 3, 4, 5]));
 
 // task 19
-console.log('\n Class Shelf testing:');
+console.log('\n Testing methods getFirst and add of class Shelf:');
 console.log(bookShelf.getFirst());
 console.log(magazineShelf.getFirst());
+
+// task 20
+console.log('\n Testing methods printTitles and find of class Shelf:');
+magazineShelf.printTitles();
+console.log(magazineShelf.find('Five Points'));
