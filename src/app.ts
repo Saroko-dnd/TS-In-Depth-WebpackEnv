@@ -70,6 +70,13 @@ const inventory: Book[] = [
         category: Category.Software
     }
 ];
+const bookShelf: Shelf<Book> = new Shelf();
+const magazines: Magazine[] = [
+    { title: 'Programming Language Monthly', publisher: 'Code Mags' },
+    { title: 'Literary Fiction Quarterly', publisher: 'College Press' },
+    { title: 'Five Points', publisher: 'GSU' }
+];
+const magazineShelf: Shelf<Magazine> = new Shelf();
 
 let idGenerator: (name: string, id: number) => string = (
     name: string,
@@ -81,6 +88,12 @@ let idGenerator: (name: string, id: number) => string = (
 idGenerator = createCustomerID;
 favoriteLibrarian.name = 'Joshua';
 // ref.publisher = 'Arcadia Publishing';
+inventory.forEach(book => {
+    bookShelf.add(book);
+});
+magazines.forEach(magazine => {
+    magazineShelf.add(magazine);
+});
 
 function getAllBooks(): Book[] {
     let books: Book[] = [
@@ -276,3 +289,8 @@ refBook.printCitation();
 console.log('\n Testing of generic function purge: ');
 console.log(purge<Book>(inventory));
 console.log(purge<number>([1, 2, 3, 4, 5]));
+
+// task 19
+console.log('\n Class Shelf testing:');
+console.log(bookShelf.getFirst());
+console.log(magazineShelf.getFirst());
