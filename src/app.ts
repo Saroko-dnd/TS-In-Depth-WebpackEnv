@@ -1,6 +1,7 @@
 import { Category } from './enums';
 import { UniversityLibrarian, Encyclopedia as RefBook } from './classes';
 import { Book, Author, Logger, Librarian } from './interfaces';
+import { purge } from './lib/utility-functions';
 
 showHello('greeting', 'TypeScript');
 
