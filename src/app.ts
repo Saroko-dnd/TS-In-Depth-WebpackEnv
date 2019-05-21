@@ -1,94 +1,12 @@
+import { Category } from './enums';
+import { ReferenceItem, UniversityLibrarian } from './classes';
+import { Book, Author, Logger, Librarian } from './interfaces';
+
 showHello('greeting', 'TypeScript');
 
 function showHello(divName: string, name: string) {
     const elt = document.getElementById(divName);
     elt.innerText = `Hello from ${name}`;
-}
-
-enum Category {
-    JavaScript,
-    CSS,
-    HTML,
-    TypeScript,
-    Angular
-}
-
-interface Person {
-    name: string;
-    email: string;
-}
-
-interface Author extends Person {
-    numBooksPublished: number;
-}
-
-interface Librarian extends Person {
-    department: string;
-    assistCustomer: (custName: string) => void;
-}
-
-interface DamageLogger {
-    (reason: string): void;
-}
-
-interface Book {
-    id: number;
-    title: string;
-    author: string;
-    available: boolean;
-    category: Category;
-
-    pages?: number;
-
-    markDamaged?: DamageLogger;
-}
-
-class UniversityLibrarian implements Librarian {
-    name: string;
-    email: string;
-    department: string;
-
-    assistCustomer(custName: string): void {
-        console.log(`${this.name} is assisting ${custName}`);
-    }
-}
-
-abstract class ReferenceItem {
-    constructor(public title: string, protected year: number) {
-        console.log('Creating a new ReferenceItem...');
-    }
-
-    /*constructor(newTitle: string, newYear: number) {
-        console.log('Creating a new ReferenceItem...');
-
-        this.title = newTitle;
-        this.year = newYear;
-    }
-
-    title: string;
-    year: number;*/
-
-    static department = 'Programming';
-
-    private _publisher: string;
-
-    get publisher() {
-        return this._publisher.toUpperCase();
-    }
-
-    set publisher(newPublisher: string) {
-        this._publisher = newPublisher;
-    }
-
-    abstract printCitation(): void;
-
-    printItem() {
-        console.log(
-            `${this.title} from ${
-                ReferenceItem.department
-            } department was published in ${this.year}`
-        );
-    }
 }
 
 class Encyclopedia extends ReferenceItem {
@@ -121,7 +39,7 @@ const myBook: Book = {
     pages: 200,
     markDamaged: printBookDamegeDescription
 };
-const logDamage: DamageLogger = simpleDamageLogger;
+const logDamage: Logger = simpleDamageLogger;
 const favoriteAuthor: Author = {
     name: 'Ethan',
     email: 'ethan@gmail.com',
