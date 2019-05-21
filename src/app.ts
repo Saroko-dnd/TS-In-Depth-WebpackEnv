@@ -1,6 +1,7 @@
 import { Category } from './enums';
 import { UniversityLibrarian, Encyclopedia as RefBook } from './classes';
 import { Book, Author, Logger, Librarian } from './interfaces';
+import { purge } from './lib/utility-functions';
 
 showHello('greeting', 'TypeScript');
 
@@ -39,6 +40,36 @@ const favoriteLibrarian: Librarian = new UniversityLibrarian();
 );*/
 const refBook = new RefBook('Programming languages', 2015, 3);
 const myBooks: string[] = сheckoutBooks('Ann', 1, 2, 4);
+const inventory: Book[] = [
+    {
+        id: 10,
+        title: 'The C Programming Language',
+        author: 'K & R',
+        available: true,
+        category: Category.Software
+    },
+    {
+        id: 11,
+        title: 'Code Complete',
+        author: 'Steve McConnell',
+        available: true,
+        category: Category.Software
+    },
+    {
+        id: 12,
+        title: '8-Bit Graphics with Cobol',
+        author: 'A. B.',
+        available: true,
+        category: Category.Software
+    },
+    {
+        id: 13,
+        title: 'Cool autoexec.bat Scripts!',
+        author: 'C. D.',
+        available: true,
+        category: Category.Software
+    }
+];
 
 let idGenerator: (name: string, id: number) => string = (
     name: string,
@@ -240,3 +271,8 @@ refBook.printItem();
 // task 13
 console.log('\n Result of refBook.printCitation():');
 refBook.printCitation();
+
+// task 18
+console.log('\n Testing of generic function purge: ');
+console.log(purge<Book>(inventory));
+console.log(purge<number>([1, 2, 3, 4, 5]));
