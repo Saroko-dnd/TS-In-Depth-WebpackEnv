@@ -309,3 +309,14 @@ fLibrarian['printLibrarian']();
 // task 26
 console.log('\n Testing of property decorator @format:');
 console.log(favoriteLibrarian.name);
+
+// task 27
+console.log('\n Testing of @positiveInteger accessor decorator:');
+const randomNumbers = [-10, 0, 4.5, 5];
+randomNumbers.forEach(value => {
+    try {
+        refBook.copies = value;
+    } catch (error) {
+        console.log(error);
+    }
+});
