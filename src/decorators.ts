@@ -53,4 +53,14 @@ function timeout(milliseconds: number): Function {
     };
 }
 
-export { sealed, logger, writable, timeout };
+function logParameter(target: Object, methodName: string, paramIndex: number) {
+    const key = `${methodName}_decor_params_indexes`;
+
+    if (Array.isArray(target[key])) {
+        target[key].push(paramIndex);
+    } else {
+        target[key] = [paramIndex];
+    }
+}
+
+export { sealed, logger, writable, timeout, logParameter };
