@@ -41,11 +41,11 @@ function timeout(milliseconds: number): Function {
         propertyKey: string,
         descriptor: PropertyDescriptor
     ) {
-        const method = descriptor.value;
+        const originalMethod = descriptor.value;
 
         descriptor.value = function(...args) {
             setTimeout(() => {
-                method.apply(this, args);
+                originalMethod.apply(this, args);
             }, milliseconds);
         };
 
@@ -53,4 +53,42 @@ function timeout(milliseconds: number): Function {
     };
 }
 
-export { sealed, logger, writable, timeout };
+function logParameter(target: Object, methodName: string, paramIndex: number) {
+    const key = `${methodName}_decor_params_indexes`;
+
+    if (Array.isArray(target[key])) {
+        target[key].push(paramIndex);
+    } else {
+        target[key] = [paramIndex];
+    }
+}
+
+function logMethod(
+    target: Object,
+    methodName: string,
+    descriptor: PropertyDescriptor
+) {
+    const originalMethod = descriptor.value;
+
+    descriptor.value = function(...args) {
+        const indexes = target[`${methodName}_decor_params_indexes`];
+
+        if (Array.isArray(indexes)) {
+            args.forEach((arg, index) => {
+                if (indexes.indexOf(index) !== -1) {
+                    console.log(
+                        `Method: ${methodName}, ParamIndex: ${index}, ParamValue: ${arg}`
+                    );
+                }
+            });
+        }
+
+        const result = originalMethod.apply(this, args);
+
+        return result;
+    };
+
+    return descriptor;
+}
+
+export { sealed, logger, writable, timeout, logParameter, logMethod };
