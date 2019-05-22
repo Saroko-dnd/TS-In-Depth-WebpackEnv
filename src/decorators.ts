@@ -35,4 +35,22 @@ function writable(isWritable: boolean): Function {
     };
 }
 
-export { sealed, logger, writable };
+function timeout(milliseconds: number): Function {
+    return function(
+        target: Object,
+        propertyKey: string,
+        descriptor: PropertyDescriptor
+    ) {
+        const method = descriptor.value;
+
+        descriptor.value = function(...args) {
+            setTimeout(() => {
+                method.apply(this, args);
+            }, milliseconds);
+        };
+
+        return descriptor;
+    };
+}
+
+export { sealed, logger, writable, timeout };

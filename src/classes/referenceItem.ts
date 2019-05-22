@@ -1,3 +1,5 @@
+import { timeout } from '../decorators';
+
 abstract class ReferenceItem {
     constructor(public title: string, protected year: number) {
         console.log('Creating a new ReferenceItem...');
@@ -27,6 +29,7 @@ abstract class ReferenceItem {
 
     abstract printCitation(): void;
 
+    @timeout(3000)
     printItem() {
         console.log(
             `${this.title} from ${

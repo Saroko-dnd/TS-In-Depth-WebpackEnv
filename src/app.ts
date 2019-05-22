@@ -226,7 +226,7 @@ function simpleDamageLogger(damage: string): void {
     console.log(`Damage description: ${damage}`);
 }
 
-// ====================showing results in console==================================
+// ====================showing results in console + some task specific code==================================
 // task 1
 logFirstAvailable(getAllBooks());
 
