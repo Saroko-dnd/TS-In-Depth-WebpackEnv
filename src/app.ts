@@ -15,7 +15,8 @@ import {
     createCustomer,
     printBook,
     getBooksByCategory,
-    logCategorySearch
+    logCategorySearch,
+    getBooksByCategoryPromise
 } from './lib/utility-functions';
 
 showHello('greeting', 'TypeScript');
@@ -213,3 +214,30 @@ console.log('BEFORE async function getBooksByCategory was called');
 getBooksByCategory(Category.JavaScript, logCategorySearch);
 getBooksByCategory(Category.Software, logCategorySearch);
 console.log('AFTER async function getBooksByCategory has been called');
+
+// task 29
+console.log('\n Testing function getBooksByCategoryPromise:');
+console.log('BEFORE async function getBooksByCategoryPromise was called');
+getBooksByCategoryPromise(Category.JavaScript)
+    .then(titles => {
+        console.log(titles.join(', '));
+
+        return titles.length;
+    })
+    .then(numerOfBooks => {
+        console.log(`Number of books in category Javascript: ${numerOfBooks}`);
+    })
+    .catch(err => console.log(err));
+getBooksByCategoryPromise(Category.Software)
+    .then(titles => {
+        console.log(titles.join(', '));
+
+        return titles.length;
+    })
+    .then(numerOfBooks => {
+        console.log(`Number of books in category Software: ${numerOfBooks}`);
+    })
+    .catch(err => console.log(err));
+console.log('AFTER async function getBooksByCategoryPromise has been called');
+
+console.log('\n\n\n Results of asynchronous operations:');
