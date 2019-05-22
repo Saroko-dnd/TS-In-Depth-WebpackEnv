@@ -16,7 +16,8 @@ import {
     printBook,
     getBooksByCategory,
     logCategorySearch,
-    getBooksByCategoryPromise
+    getBooksByCategoryPromise,
+    logSearchResults
 } from './lib/utility-functions';
 
 showHello('greeting', 'TypeScript');
@@ -210,14 +211,14 @@ randomNumbers.forEach(value => {
 
 // task 28
 console.log('\n Testing function getBooksByCategory:');
-console.log('BEFORE async function getBooksByCategory was called');
+console.log('Beginning search...');
 getBooksByCategory(Category.JavaScript, logCategorySearch);
 getBooksByCategory(Category.Software, logCategorySearch);
-console.log('AFTER async function getBooksByCategory has been called');
+console.log('Search submitted...');
 
 // task 29
 console.log('\n Testing function getBooksByCategoryPromise:');
-console.log('BEFORE async function getBooksByCategoryPromise was called');
+console.log('Beginning search...');
 getBooksByCategoryPromise(Category.JavaScript)
     .then(titles => {
         console.log(titles.join(', '));
@@ -238,6 +239,12 @@ getBooksByCategoryPromise(Category.Software)
         console.log(`Number of books in category Software: ${numerOfBooks}`);
     })
     .catch(err => console.log(err));
-console.log('AFTER async function getBooksByCategoryPromise has been called');
+console.log('Search submitted...');
+
+// task 30
+console.log('\n Testing async function logSearchResults:');
+console.log('Beginning search...');
+logSearchResults(Category.JavaScript).catch(reason => console.log(reason));
+console.log('Search submitted...');
 
 console.log('\n\n\n Results of asynchronous operations:');
