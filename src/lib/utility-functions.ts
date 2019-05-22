@@ -150,7 +150,7 @@ export function getBooksByCategory(
             const titles = getBookTitlesByCategory(category);
 
             if (!titles.length) {
-                throw new Error(`No books found.`);
+                throw new Error(`No books found. (callback function)`);
             }
 
             callback(null, titles);
@@ -166,4 +166,22 @@ export function logCategorySearch(err: Error, titles: string[]): void {
     } else {
         console.log(titles.join(','));
     }
+}
+
+export function getBooksByCategoryPromise(
+    category: Category
+): Promise<string[]> {
+    const titlesPromise: Promise<string[]> = new Promise((resolve, regect) => {
+        setTimeout(() => {
+            const titles = getBookTitlesByCategory(category);
+
+            if (!titles.length) {
+                regect(`No books found. (rejected promise)`);
+            } else {
+                resolve(titles);
+            }
+        }, 2000);
+    });
+
+    return titlesPromise;
 }
