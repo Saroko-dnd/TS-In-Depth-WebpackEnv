@@ -10,11 +10,7 @@ class Encyclopedia extends ReferenceItem {
     }
 
     printItem() {
-        console.log(
-            `${this.title} from ${
-                ReferenceItem.department
-            } department was published in ${this.year}`
-        );
+        super.printItem();
         console.log(`Edition: ${this.edition} (${this.year})`);
     }
 }
