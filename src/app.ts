@@ -77,6 +77,7 @@ const magazines: Magazine[] = [
     { title: 'Five Points', publisher: 'GSU' }
 ];
 const magazineShelf: Shelf<Magazine> = new Shelf();
+const fLibrarian: UniversityLibrarian = new UniversityLibrarian();
 
 let idGenerator: (name: string, id: number) => string = (
     name: string,
@@ -94,6 +95,7 @@ inventory.forEach(book => {
 magazines.forEach(magazine => {
     magazineShelf.add(magazine);
 });
+fLibrarian.name = 'Anna';
 
 function getAllBooks(): Book[] {
     let books: Book[] = [
@@ -299,3 +301,7 @@ console.log(magazineShelf.getFirst());
 console.log('\n Testing methods printTitles and find of class Shelf:');
 magazineShelf.printTitles();
 console.log(magazineShelf.find('Five Points'));
+
+// task 22
+console.log('\n Testing new method printLibrarian from decorator logger:');
+fLibrarian['printLibrarian']();
