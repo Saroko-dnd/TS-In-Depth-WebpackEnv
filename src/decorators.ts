@@ -136,4 +136,33 @@ function format(pref: string = 'Mr./Mrs.'): Function {
     };
 }
 
-export { sealed, logger, writable, timeout, logParameter, logMethod, format };
+function positiveInteger(
+    target: Object,
+    propertyName: string,
+    descriptor: PropertyDescriptor
+) {
+    const originalSetter = descriptor.set;
+
+    descriptor.set = function(value: number) {
+        if (!Number.isInteger(value) || value <= 0) {
+            throw new Error(
+                `Value ${value} is invalid, only integers > 0 can be assigned!`
+            );
+        }
+
+        originalSetter.call(this, value);
+    };
+
+    return descriptor;
+}
+
+export {
+    sealed,
+    logger,
+    writable,
+    timeout,
+    logParameter,
+    logMethod,
+    format,
+    positiveInteger
+};
