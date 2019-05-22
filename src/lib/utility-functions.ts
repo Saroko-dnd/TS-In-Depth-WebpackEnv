@@ -1,4 +1,4 @@
-import { Book } from '../interfaces';
+import { Book, LibMgrCallback } from '../interfaces';
 import { Category } from '../enums';
 
 export function purge<T>(inventory: T[]): T[] {
@@ -139,4 +139,23 @@ export function printBookDamegeDescription(reason: string): void {
 
 export function simpleDamageLogger(damage: string): void {
     console.log(`Damage description: ${damage}`);
+}
+
+export function getBooksByCategory(
+    category: Category,
+    callback: LibMgrCallback
+): void {
+    setTimeout(() => {
+        try {
+            const titles = getBookTitlesByCategory(category);
+
+            if (!titles.length) {
+                throw new Error(`No books found.`);
+            }
+
+            callback(null, titles);
+        } catch (error) {
+            callback(error, null);
+        }
+    }, 2000);
 }
