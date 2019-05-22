@@ -65,19 +65,19 @@ function logParameter(target: Object, methodName: string, paramIndex: number) {
 
 function logMethod(
     target: Object,
-    propertyKey: string,
+    methodName: string,
     descriptor: PropertyDescriptor
 ) {
     const originalMethod = descriptor.value;
 
     descriptor.value = function(...args) {
-        const indexes = target[`${propertyKey}_decor_params_indexes`];
+        const indexes = target[`${methodName}_decor_params_indexes`];
 
         if (Array.isArray(indexes)) {
             args.forEach((arg, index) => {
                 if (indexes.indexOf(index) !== -1) {
                     console.log(
-                        `Method: ${propertyKey}, ParamIndex: ${index}, ParamValue: ${arg}`
+                        `Method: ${methodName}, ParamIndex: ${index}, ParamValue: ${arg}`
                     );
                 }
             });
