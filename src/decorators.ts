@@ -25,4 +25,14 @@ function logger<TFunction extends Function>(target: TFunction): TFunction {
     return <TFunction>newConstructor;
 }
 
-export { sealed, logger };
+function writable(isWritable: boolean): Function {
+    return function(
+        target: Object,
+        propertyKey: string,
+        descriptor: PropertyDescriptor
+    ) {
+        descriptor.writable = isWritable;
+    };
+}
+
+export { sealed, logger, writable };
