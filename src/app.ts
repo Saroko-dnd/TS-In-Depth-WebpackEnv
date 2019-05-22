@@ -305,3 +305,7 @@ console.log(magazineShelf.find('Five Points'));
 // task 22
 console.log('\n Testing new method printLibrarian from decorator logger:');
 fLibrarian['printLibrarian']();
+
+// task 26
+console.log('\n Testing of property decorator @format:');
+console.log(favoriteLibrarian.name);

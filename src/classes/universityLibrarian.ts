@@ -4,12 +4,14 @@ import {
     logger,
     writable,
     logMethod,
-    logParameter
+    logParameter,
+    format
 } from '../decorators';
 
 @logger
 @sealed('UniversityLibrarian')
 class UniversityLibrarian implements Interfaces.Librarian {
+    @format()
     name: string;
     email: string;
     department: string;
