@@ -13,7 +13,9 @@ import {
     logBookTitles,
     getBookTitlesByCategory,
     createCustomer,
-    printBook
+    printBook,
+    getBooksByCategory,
+    logCategorySearch
 } from './lib/utility-functions';
 
 showHello('greeting', 'TypeScript');
@@ -204,3 +206,10 @@ randomNumbers.forEach(value => {
         console.log(error);
     }
 });
+
+// task 28
+console.log('\n Testing function getBooksByCategory:');
+console.log('BEFORE async function getBooksByCategory was called');
+getBooksByCategory(Category.JavaScript, logCategorySearch);
+getBooksByCategory(Category.Software, logCategorySearch);
+console.log('AFTER async function getBooksByCategory has been called');

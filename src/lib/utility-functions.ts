@@ -159,3 +159,11 @@ export function getBooksByCategory(
         }
     }, 2000);
 }
+
+export function logCategorySearch(err: Error, titles: string[]): void {
+    if (err) {
+        console.log(err.message);
+    } else {
+        console.log(titles.join(','));
+    }
+}
