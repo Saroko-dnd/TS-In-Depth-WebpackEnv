@@ -1,7 +1,20 @@
 import { Category } from './enums';
 import { UniversityLibrarian, Encyclopedia as RefBook, Shelf } from './classes';
 import { Book, Author, Logger, Librarian, Magazine } from './interfaces';
-import { purge } from './lib/utility-functions';
+import {
+    purge,
+    createCustomerID,
+    getTitles,
+    printBookDamegeDescription,
+    simpleDamageLogger,
+    сheckoutBooks,
+    logFirstAvailable,
+    getAllBooks,
+    logBookTitles,
+    getBookTitlesByCategory,
+    createCustomer,
+    printBook
+} from './lib/utility-functions';
 
 showHello('greeting', 'TypeScript');
 
@@ -96,135 +109,6 @@ magazines.forEach(magazine => {
     magazineShelf.add(magazine);
 });
 fLibrarian.name = 'Anna';
-
-function getAllBooks(): Book[] {
-    let books: Book[] = [
-        {
-            id: 1,
-            title: 'Refactoring JavaScript',
-            author: 'Evan Burchard',
-            category: Category.JavaScript,
-            available: true
-        },
-        {
-            id: 2,
-            title: 'JavaScript Testing',
-            author: 'Liang Yuxian Eugene',
-            category: Category.JavaScript,
-            available: false
-        },
-        {
-            id: 3,
-            title: 'CSS Secrets',
-            author: 'Lea Verou',
-            category: Category.CSS,
-            available: true
-        },
-        {
-            id: 4,
-            title: 'Mastering JavaScript Object-Oriented Programming',
-            author: 'Andrea Chiarelli',
-            category: Category.JavaScript,
-            available: true
-        }
-    ];
-
-    return books;
-}
-
-function logFirstAvailable(books = getAllBooks()): void {
-    const numberOfBooks: number = books.length;
-    let firstAvailableTitle: string;
-
-    for (const book of books) {
-        if (book.available) {
-            firstAvailableTitle = book.title;
-            break;
-        }
-    }
-
-    console.log(`Number of books: ${numberOfBooks}`);
-    console.log(`First available title: ${firstAvailableTitle}`);
-}
-
-function getBookTitlesByCategory(
-    category = Category.JavaScript
-): Array<string> {
-    const titles: Array<string> = [];
-
-    for (const book of getAllBooks()) {
-        if (book.category === category) {
-            titles.push(book.title);
-        }
-    }
-
-    return titles;
-}
-
-function logBookTitles(titles: string[]): void {
-    titles.forEach(title => console.log(title));
-}
-
-function getBookByID(id: number): Book | undefined {
-    return getAllBooks().find(book => book.id === id);
-}
-
-function createCustomerID(name: string, id: number): string {
-    return `${name}${id}`;
-}
-
-function createCustomer(name: string, age?: number, city?: string): void {
-    console.log(`Customer name: ${name}`);
-
-    if (age) {
-        console.log(`age: ${age}`);
-    }
-    if (city) {
-        console.log(`city: ${city}`);
-    }
-}
-
-function сheckoutBooks(customer: string, ...bookIDs: number[]): string[] {
-    const availableTitles: string[] = [];
-
-    console.log(`Request was made by: ${customer}`);
-
-    bookIDs.forEach(id => {
-        const book: Book | undefined = getBookByID(id);
-
-        if (book && book.available) {
-            availableTitles.push(book.title);
-        }
-    });
-
-    return availableTitles;
-}
-
-function getTitles(author: string): string[];
-function getTitles(available: boolean): string[];
-function getTitles(bookProperty: string | boolean): string[] {
-    const propType: string = typeof bookProperty;
-
-    return getAllBooks()
-        .filter(book =>
-            propType === 'string'
-                ? book.author === bookProperty
-                : book.available === bookProperty
-        )
-        .map(book => book.title);
-}
-
-function printBook(book: Book): void {
-    console.log(`${book.title} by ${book.author}`);
-}
-
-function printBookDamegeDescription(reason: string): void {
-    console.log(`Damaged: ${reason}`);
-}
-
-function simpleDamageLogger(damage: string): void {
-    console.log(`Damage description: ${damage}`);
-}
 
 // ====================showing results in console + some task specific code==================================
 // task 1
